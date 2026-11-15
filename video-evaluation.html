@@ -2980,16 +2980,16 @@
     <header class="page hero">
       <div>
         <p class="eyebrow">AI Video Evaluation · Storytelling, Editing and Visual Quality</p>
-        <h1 aria-label="Watch the clip. Name the failure. Suggest the fix.">
+        <h1 aria-label="Watch the clip. Name the failure. Write it down.">
           <span>Watch the clip.</span>
           <span>Name the failure.</span>
-          <span>Suggest the fix.</span>
+          <span>Write it down.</span>
         </h1>
       </div>
       <div class="hero-side">
         <p class="lead">I review AI-generated video with 15+ years of editing, directing and showrunning behind the
           judgement, and write up what fails&mdash;storytelling, transitions, visual consistency, pacing,
-          audio-visual sync&mdash;as structured feedback with a suggested fix.</p>
+          audio-visual sync&mdash;as structured feedback.</p>
         <p class="note">Selected evaluation work · Singapore · 2024&ndash;2026</p>
         <div class="actions">
           <a class="action primary" href="#selected-work">View the evaluations</a>
@@ -3040,7 +3040,7 @@
         </div>
         <div class="metric"><strong>100+</strong><span>hours of television edited and finished</span></div>
         <div class="metric"><strong>824</strong><span>generation records audited for failure modes</span></div>
-        <div class="metric"><strong>163</strong><span>items in golden set v0, built November 2026</span></div>
+        <div class="metric"><strong>163</strong><span>items in a candidate golden set, built November 2026</span></div>
       </div>
     </section>
 
@@ -3050,8 +3050,8 @@
         <div class="work-intro-copy">
           <h2>Six evaluation studies of generative video and image output.</h2>
           <p>Each one states a question, a method, a finding and its limits. Two are evaluation design: a rubric
-            applied across three text-to-video models, and a failure taxonomy with a golden set. Four are model
-            comparisons run on my own generative video projects.</p>
+            applied across three text-to-video models, and a failure taxonomy with a golden set. Four are
+            evaluations run on my own generative video projects.</p>
           <p>The judgement underneath is a rater's, applied clip by clip: storytelling, scene transitions, visual
             consistency, editing, pacing and audio-visual sync, written up as structured feedback.</p>
           <p>I set the standard, designed each evaluation and made every judgement. I was the only rater throughout,
@@ -3225,8 +3225,8 @@
                 <ul class="finding-list">
                   <li><strong>Motion:</strong> Model A extended the boy's hand unnaturally at the end of the shot;
                     Models A and C showed a lack of human body physics in the sprint.</li>
-                  <li><strong>Performance against the prompt:</strong> Model B was the only one to render the
-                    streaking fall, but the boy looked happy where the prompt asked for a scream.</li>
+                  <li><strong>Performance against the prompt:</strong> Model B was the only one to add motion
+                    streaks to the fall, but the boy looked happy where the prompt asked for a scream.</li>
                   <li><strong>Camera and blocking:</strong> Model A defaulted to a static wide shot, Model C added
                     handheld tracking, and Model B choreographed camera and actor movement together.</li>
                   <li><strong>Lens adherence:</strong> Model A rendered the shallow depth of field of the requested
@@ -3251,6 +3251,10 @@
                     failures attributed to the prompt.</li>
                   <li><strong>Small sample, one rater.</strong> Nine clips and one generation per prompt. Next: repeat
                     generations, a second rater and an agreement check.</li>
+                  <li><strong>Double-barrelled and judgement questions.</strong> Several questions ask two things at
+                    once (&ldquo;natural and follow realistic physics&rdquo;), and originality and shot success are
+                    holistic judgements, not something a rater can point at. Each should be split or defined by
+                    observable criteria.</li>
                   <li><strong>One summed total.</strong> Technical and creative dimensions should be reported as
                     separate totals.</li>
                   <li><strong>A missing dimension.</strong> Every prompt repeated the same wardrobe, so attribute
@@ -3406,7 +3410,8 @@
                   series, with a rating tool I built that hides the judges' scores until my own rating is saved.</h3>
                 <div class="eval-table-wrap">
                   <table class="eval-table">
-                    <caption>Judge agreement with my blind ratings · 71 human ratings in total</caption>
+                    <caption>Judge agreement with my blind ratings · four-point scale · items each judge scored before seeing
+                      mine</caption>
                     <thead>
                       <tr>
                         <th scope="col">Judge</th>
@@ -3574,17 +3579,18 @@
             <section class="story-section" aria-labelledby="jj-eval-golden">
               <h3 class="micro" id="jj-eval-golden">Golden set &amp; calibration</h3>
               <div class="story-copy">
-                <h3 class="story-lede">Golden set v0: 163 items and 379 labels across 28 rubric lines. Built; not yet
-                  confirmed.</h3>
+                <h3 class="story-lede">Candidate golden set v0: 163 items and 379 draft labels across 28 rubric lines.
+                  Built; not yet confirmed.</h3>
                 <ul class="finding-list">
                   <li><strong>Contents:</strong> 89 keyframes, 20 video takes and 54 reference, grid and location
                     images, each frozen by file hash with the references and prompt that produced it.</li>
-                  <li><strong>Labels:</strong> 103 fail, 32 pass, and 241 no-fault labels implied where I accepted
-                    the output. 51 labels come from verdicts I stated at review; 87 come from the AI assistant's
-                    inspection records. None of the 379 has yet been confirmed by me on the review sheet.</li>
+                  <li><strong>Labels:</strong> 103 fail, 32 pass, 3 not applicable or disputed, and 241 no-fault
+                    labels implied where I accepted the output. 51 labels come from verdicts I stated at review; 87 come from the AI
+                    assistant's inspection records; the other 241 are the implied ones. None of the 379 has yet been confirmed by me on the review sheet.</li>
                   <li><strong>Calibration rule:</strong> a rubric line goes live only if the judge agrees with my
-                    labels on at least 80% of items with false fails at 10% or less. Lines that miss are tuned or left
-                    with the human reviewer.</li>
+                    labels on at least 80% of items with false fails at 10% or less. False fails and false passes are reported
+                    separately for each line, because most labels are passes and raw agreement alone would flatter a
+                    judge that passes everything. Lines that miss are tuned or left with the human reviewer.</li>
                   <li><strong>Shadow period:</strong> for the first two live episodes the checks run without acting.
                     Their verdicts are stored and compared with mine afterwards.</li>
                   <li><strong>Regression use:</strong> the set is rerun whenever a model version or a rubric line
@@ -4169,7 +4175,7 @@
           <span class="micro">Technology documentary · CNA 2019</span>
           <h3>Astropreneurs</h3>
           <p>Six Singapore-based founders building for a new space economy. Ten minutes of graphics directed remotely
-            through one written review a day. Shortlisted, AIDB World TV Awards.</p>
+            through one written review a day. Shortlisted, AIBD World TV Awards.</p>
         </article>
         <article class="practice-card broadcast-card">
           <a class="practice-card-image" href="https://play.gumlet.io/embed/6a4281a13583eb17263f53bd" target="_blank"
@@ -4249,7 +4255,7 @@
       <div class="contact-grid">
         <h2>Make the judgement reproducible.</h2>
         <div class="contact-copy">
-          <p>Clip-by-clip evaluation of AI-generated video, with structured feedback and suggestions for improvement.</p>
+          <p>Evaluation of AI-generated video, written up as structured feedback.</p>
           <div class="actions">
             <a class="action primary" href="mailto:hello.inezang@gmail.com">Email Inez</a>
             <a class="action" href="https://www.linkedin.com/in/inez-ang">LinkedIn</a>
