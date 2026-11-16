@@ -2960,6 +2960,31 @@
         border-bottom: 0;
       }
     }
+
+    /* Four standards: two by two, overriding the source's three-column grid and last-card span. */
+    .standards-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .standards-grid .standard:nth-child(n+3) {
+      border-top: 1px solid rgba(255, 255, 255, .45);
+    }
+
+    @media (max-width: 980px) {
+      .standards-grid .standard:last-child {
+        grid-column: auto;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .standards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .standards-grid .standard:nth-child(n+2) {
+        border-top: 1px solid rgba(255, 255, 255, .45);
+      }
+    }
   </style>
 </head>
 
@@ -3169,7 +3194,7 @@
         </div>
         <aside class="case-status case-status--head">
           <span class="status">Completed 2025 · Sole rater</span>
-          <p>Colleagues presented the evaluation writeup to the agency's CEO. The rubric has known weaknesses, listed
+          <p>The evaluation writeup was presented to the CEO. The rubric has known weaknesses, listed
             in the evidence below with the changes I would make.
           </p>
         </aside>
@@ -3183,7 +3208,7 @@
         <div class="evidence-grid">
           <aside class="case-status case-status--inline">
             <span class="status">Completed 2025 · Sole rater</span>
-            <p>Colleagues presented the evaluation writeup to the agency's CEO. The rubric has known weaknesses, listed
+            <p>The evaluation writeup was presented to the CEO. The rubric has known weaknesses, listed
               below with the changes I would make.
             </p>
           </aside>
@@ -3304,13 +3329,12 @@
             </div>
             <div>
               <dt>Finding</dt>
-              <dd>Five failure classes. Model judges did not predict my taste, so they are asked only about observable
-                facts.</dd>
+              <dd>Five failure classes. On a small sample, LLM judges called 90&ndash;95% of comedy scripts funny; I
+                called 56%. So judges are asked only about observable facts.</dd>
             </div>
             <div>
               <dt>Status</dt>
-              <dd>Design complete; golden set v0 built; labels awaiting my confirmation; calibration not yet run (15
-                November 2026).</dd>
+              <dd>Design complete; golden set v0 built; in progress (November 2026).</dd>
             </div>
           </dl>
           <div class="eval-table-wrap">
@@ -3654,126 +3678,6 @@
         </aside>
       </header>
 
-      <details class="case-evidence">
-        <summary>
-          <span>View detailed evidence</span>
-          <span class="micro" aria-hidden="true">Tests · Input vs model failures · Decision</span>
-        </summary>
-        <div class="evidence-grid">
-          <aside class="case-status case-status--inline">
-            <span class="status">Sprint 1 and manual model tests complete · Sprint 2 designed</span>
-            <p>The story pipeline is retained. Sprint 2 will test whether stronger storyboards and reference-to-video
-              (R2V) models can support automated production or produce enough usable coverage to minimise manual
-              editing.
-            </p>
-          </aside>
-          <article class="youniverse-story">
-            <section class="story-section" aria-labelledby="youniverse-how">
-              <h3 class="micro" id="youniverse-how">How it works</h3>
-              <div class="story-copy">
-                <ol class="story-flow" aria-label="Youniverse production flow">
-                  <li class="story-step"><strong>Start with one portrait</strong><small>The user's picture becomes the
-                      subject reference.</small></li>
-                  <li class="story-step"><strong>Generate twelve lives</strong><small>The system creates twelve
-                      alternative-life concepts.</small></li>
-                  <li class="story-step"><strong>Shortlist four</strong><small>An automated evaluator identifies the
-                      strongest concepts.</small></li>
-                  <li class="story-step"><strong>Guide the story</strong><small>The user selects an alternative life and
-                      makes further choices as the story develops.</small></li>
-                  <li class="story-step"><strong>Build the microdrama</strong><small>The system creates two supporting
-                      characters, the world and props, then generates reference sheets, a storyboard, video shots and an
-                      automated edit.</small></li>
-                </ol>
-              </div>
-            </section>
-
-            <section class="story-section" aria-labelledby="youniverse-tests">
-              <h3 class="micro" id="youniverse-tests">Sprint 1 / Tests & Findings</h3>
-              <div class="story-copy">
-                <h3 id="youniverse-tests-question" class="story-lede">Can three characters, their world, its props and
-                  the action
-                  remain consistent across a sequence of
-                  generated shots on Happy Horse 1.1?</h3>
-                <ol class="test-flow">
-                  <li>
-                    <p class="test-title"><strong>Keep three characters consistent with character sheets</strong></p>
-                    <p>Character sheets improved identity and wardrobe consistency,
-                      but the character's face did not match the reference exactly, especially on an Asian face.</p>
-                  </li>
-                  <li>
-                    <p class="test-title"><strong>Carry scene state across shots using the final frame as
-                        reference</strong></p>
-                    <p>The final frame helped preserve local scene state, while the character
-                      sheets helped pull the characters back towards their intended designs. Neither reference held
-                      reliably across the full sequence.</p>
-                  </li>
-                  <li>
-                    <p class="test-title"><strong>Keep the world and props consistent</strong></p>
-                    <p>Compare two kinds of world reference:</p>
-                    <div class="world-compare" aria-label="World reference comparison">
-                      <div><span class="micro">Visual reference</span><span>A labelled world and prop reference
-                          sheet.</span>
-                      </div>
-                      <div><span class="micro">Written reference</span><span>A written description of the world's fixed
-                          visual rules.</span></div>
-                    </div>
-                    <p>The model repeatedly copied panels and labels from the visual sheet into
-                      the generated shots. Written rules avoided those artefacts, but neither method maintained the
-                      world and props reliably across the sequence.</p>
-                  </li>
-                </ol>
-                <br>
-                <p class="test-finding"><strong>Takeaway: References helped. Video continuity still
-                    failed.</strong> Character sheets and final-frame references improved individual shots, but
-                  character,
-                  world and prop continuity still drifted across the sequence. The output did not provide reliable
-                  coverage for a coherent automated edit.</p>
-              </div>
-            </section>
-
-            <section class="story-section" aria-labelledby="youniverse-attribution">
-              <h3 class="micro" id="youniverse-attribution">Failure attribution</h3>
-              <div class="story-copy">
-                <h3 class="story-lede">Which failures were mine to fix in the prompt and references, and which were the
-                  model's?</h3>
-                <div class="world-compare" aria-label="Input failures compared with model-quality failures">
-                  <div><span class="micro">Prompt and input failures</span><span>Panels and labels from the visual
-                      world sheet were copied into the shots; switching to written rules removed the artefact. Actor
-                      positions changed between shots because the storyboard placed them inconsistently.</span>
-                  </div>
-                  <div><span class="micro">Model-quality failures</span><span>With correct references supplied, the
-                      face still did not match the character sheet exactly, especially on an Asian face, and character,
-                      world and prop continuity drifted across the sequence under every reference method.</span></div>
-                </div>
-                <p class="test-finding"><strong>Why the split matters:</strong> an input failure is fixed by rewriting
-                  the prompt, reference or storyboard and should not be scored against the model. A model-quality
-                  failure survives a correct input, and is the signal worth reporting.</p>
-              </div>
-            </section>
-
-            <section class="story-next" aria-labelledby="sprint-two-title">
-              <div class="story-next-head">
-                <span class="micro">Sprint 2 / Two production tests</span>
-                <div>
-                  <h3 id="sprint-two-title" class="story-lede">Improve the storyboard. Build usable coverage.</h3>
-                  <p class="story-next-detail">Completed manual tests with updated character, world and prop sheets and
-                    different
-                    R2V models showed that Seedance 2.5
-                    produced more nuanced performances and kept the characters and world more consistent than Minimax
-                    H3.
-                    Actor positions still changed because the storyboard placed them inconsistently from shot to shot.
-                  </p>
-                  <p class="story-next-detail">Sprint 2 therefore follows two routes. First, improve storyboard
-                    generation
-                    so that action and actor positions remain continuous, then reassess the viability of automated
-                    production. Second, generate enough varied, editable shot coverage to minimise manual editing time.
-                  </p>
-                </div>
-              </div>
-            </section>
-          </article>
-        </div>
-      </details>
     </section>
 
     <section class="page case-study tight-end" id="deadtell">
@@ -3820,77 +3724,12 @@
           <span class="status">Test bed · Published R&amp;D channel · Test cycle complete</span>
           <p>An agentic research workflow discovers topics, scores them against keyword demand
             and proposes concepts for human approval. Approved concepts are then developed into scripts, shot prompts
-            and performance prompts, with human review throughout production.
+            and performance prompts, with human review throughout production. A demographic randomiser runs before scripting and reference
+            generation, because the image model cast synthetic people from narrow racial defaults.
           </p>
         </aside>
       </header>
 
-      <details class="case-evidence">
-        <summary>
-          <span>View detailed evidence</span>
-          <span class="micro" aria-hidden="true">Tests · Findings · Decision</span>
-        </summary>
-        <div class="evidence-grid">
-          <aside class="case-status case-status--inline">
-            <span class="status">Test bed · Published R&amp;D channel · Test cycle complete</span>
-            <p>An agentic research workflow discovers topics, scores them against keyword demand
-              and proposes concepts for human approval. Approved concepts are then developed into scripts, shot prompts
-              and performance prompts, with human review throughout production.
-            </p>
-          </aside>
-          <article class="youniverse-story deadtell-story">
-            <section class="story-section" aria-labelledby="deadtell-findings">
-              <h3 class="micro" id="deadtell-findings">Evaluation question &amp; usability definition</h3>
-              <div class="story-copy">
-                <h3 class="story-lede">Generated actors have to sustain believable performances across a one- to
-                  two-minute finished video.</h3>
-                <ul class="finding-list">
-                  <li>Compare Seedance 2.0, Veo 3.1 and Kling 3.0. Test whether generated actors
-                    can perform naturally and remain visually and vocally consistent across a finished video of up to
-                    two
-                    minutes.</li>
-                  <li>A take counts as usable only if it can be included in the final edit: it must adhere to the
-                    reference, show natural timing and follow real-world physics.</li>
-                </ul>
-                <br>
-                <h3 class="story-lede">Findings</h3>
-                <ul class="finding-list">
-                  <li>Kling 3.0 produced the most nuanced and believable performances. Seedance 2.0 and
-                    Veo 3.1 tended towards exaggerated expressions and delivery.</li>
-                  <li>Lip sync and facial performance were most reliable in shots under ten seconds.</li>
-                  <li>Shots required 4.3 generations on average. A finished one- to two-minute video cost US$12–18.</li>
-                  <li>Voice timbre and accent remained most consistent when both were specified in the voice prompt and
-                    a standard American accent was used.</li>
-                  <li>Passing the final frame of one shot into the next helped preserve local scene continuity, but did
-                    not reliably preserve facial identity. Face drift increased as the chain became longer.</li>
-                  <li>Image quality also deteriorated across a chain. Upscaling the final frames improved sharpness, but
-                    introduced new inconsistencies in grain and artefacts.</li>
-                </ul>
-                <br>
-                <p class="test-finding"><strong>Takeaway: </strong>Kling 3.0 can produce convincing individual takes,
-                  but
-                  the workflow remains
-                  judgement-intensive. A human still has to select performances, rewrite prompts for failed shots and
-                  assemble a workable chain. Face replacement and post-production effects are also required to smooth
-                  changes in identity and image quality.</p>
-              </div>
-            </section>
-
-            <section class="story-section" aria-labelledby="deadtell-responsible">
-              <h3 class="micro" id="deadtell-responsible">Responsible-AI intervention</h3>
-              <div class="story-copy">
-                <h3 class="story-lede">Initial reference-image tests repeatedly defaulted to white, brunette men and
-                  women.</h3>
-                <ul class="finding-list">
-                  <li>A demographic-profile randomiser was added before scripting and reference generation.</li>
-                  <li>It adds racial diversity deliberately instead of allowing the image model's recurring racial
-                    defaults to determine the cast.</li>
-                </ul>
-              </div>
-            </section>
-          </article>
-        </div>
-      </details>
     </section>
 
     <section class="page case-study tight-end" id="jj">
@@ -3941,54 +3780,6 @@
         </aside>
       </header>
 
-      <details class="case-evidence">
-        <summary>
-          <span>View detailed evidence</span>
-          <span class="micro" aria-hidden="true">Tests · Findings · Decision</span>
-        </summary>
-        <div class="evidence-grid">
-          <aside class="case-status case-status--inline">
-            <span class="status">Test bed · Published R&amp;D channel · Test cycle complete</span>
-            <p>A custom assistant generates prompts across script, image, voice, music and video. Human selection and
-              creative direction remain part of every production stage.
-            </p>
-          </aside>
-          <article class="youniverse-story jj-story">
-            <section class="story-section" aria-labelledby="jj-findings">
-              <h3 class="micro" id="jj-findings">Evaluation question &amp; test</h3>
-              <div class="story-copy">
-                <h3 class="story-lede">The character must remain visually recognisable and behave consistently in every
-                  generated image or video.</h3>
-                <ul class="finding-list">
-                  <li>Test if identity, emotional performance and voice can be preserved across multi-shot, lip-synced
-                    sequences.</li>
-                  <li>Compare Grok Imagine and Sora 2 using fixed character references.</li>
-                </ul>
-                <br>
-                <h3 class="story-lede">Findings</h3>
-                <ul class="finding-list">
-                  <li>Sora 2 produced more nuanced character performances across a wider range of emotions, so it was
-                    selected for the principal performance tests.</li>
-                  <li>Character references enabled Sora 2 to produce multi-shot, lip-synced sequences, but a usable
-                    result required six generations on average &mdash; a 6:1 iteration ratio &mdash; at an average cost
-                    of US$6 per finished video.</li>
-                  <li>Facial performance and voice timbre varied between generations. Several sequences required manual
-                    regeneration, followed by voice replacement using a custom ElevenLabs voice.</li>
-                  <li>Free and open-source video models reduced costs on generic shots and on scenes where visual
-                    hallucination supported the comedy.</li>
-                  <li>Character references improved identity retention, but did not eliminate inconsistencies across
-                    shots, performance or sound.</li>
-                </ul>
-                <br>
-                <p class="test-finding"><strong>Takeaway: </strong>A consistent talking character is achievable at
-                  relatively low generation cost, but the workflow is not yet repeatable without substantial human
-                  intervention. Fixed references, manual take selection, voice replacement and post-production are still
-                  required to make independently generated shots feel like one continuous character performance.</p>
-              </div>
-            </section>
-          </article>
-        </div>
-      </details>
     </section>
 
     <section class="page case-study tight-end" id="terra">
@@ -4005,7 +3796,7 @@
             </div>
             <div>
               <dt>Method</dt>
-              <dd>Kling 2.5 outputs judged against the source image on a written usability definition.</dd>
+              <dd>Kling 2.0 and Grok Imagine outputs judged against the source image on a written usability definition.</dd>
             </div>
             <div>
               <dt>Finding</dt>
@@ -4026,13 +3817,15 @@
           </figure>
           <div class="tool-row" aria-label="Terra Atavica tools">
             <span class="chip">Custom Python</span><span class="chip">Suno API</span><span class="chip">Gemini Pro /
-              Flash</span><span class="chip">GPT Image 2</span><span class="chip">Kling 2.5</span><span
+              Flash</span><span class="chip">GPT Image 2</span><span class="chip">Kling 2.0</span><span class="chip">Grok Imagine</span><span
               class="chip">DaVinci Resolve</span>
           </div>
         </div>
         <aside class="case-status case-status--head">
           <span class="status">Test bed · Published R&amp;D channel · Test cycle complete</span>
-          <p>An agentic pipeline searches and screens rights-cleared archive material, preserves source information,
+          <p>An agentic pipeline searches rights-cleared archive material, tags each image with a vision model for
+            NSFW and out-of-context content before generation, passes candidates to a custom screener for human
+            selection, preserves source information,
             generates and arranges AI music across five movements, and assembles the visual sequence. Human selection
             and creative direction remain at the points where historical accuracy, composition and narrative flow must
             be judged.
@@ -4040,75 +3833,6 @@
         </aside>
       </header>
 
-      <details class="case-evidence">
-        <summary>
-          <span>View detailed evidence</span>
-          <span class="micro" aria-hidden="true">Tests · Findings · Decision</span>
-        </summary>
-        <div class="evidence-grid">
-          <aside class="case-status case-status--inline">
-            <span class="status">Test bed · Published R&amp;D channel · Test cycle complete</span>
-            <p>An agentic pipeline searches and screens rights-cleared archive material, preserves source information,
-              generates and arranges AI music across five movements, and assembles the visual sequence. Human selection
-              and creative direction remain at the points where historical accuracy, composition and narrative flow must
-              be judged.
-            </p>
-          </aside>
-          <article class="youniverse-story terra-story">
-            <section class="story-section" aria-labelledby="terra-findings">
-              <h3 class="micro" id="terra-findings">Evaluation question &amp; usability definition</h3>
-              <div class="story-copy">
-                <h3 class="story-lede">Finding, checking and preparing enough suitable artwork is repetitive and slow.
-                </h3>
-                <ul class="finding-list">
-                  <li>Can archive images be colourised and animated with a low-cost image-to-video model such as Kling
-                    2.5 without altering their historical or visual integrity?</li>
-                  <li>A generation counts as usable only if it can be included in the final edit: it must adhere to the
-                    reference, show natural timing and follow real-world physics.</li>
-                </ul>
-                <br>
-                <h3 class="story-lede">Findings</h3>
-                <ul class="finding-list">
-                  <li>Searching four or more public archives, preserving source and licence records, enriching metadata
-                    and assembling the Resolve timeline could be automated reliably.</li>
-                  <li>Displaying more than 400 candidates together made comparative visual selection faster than opening
-                    files individually, while keeping human approval in the workflow.</li>
-                  <li>Kling 2.5 generally preserved the source image's composition and demonstrated convincing physical
-                    movement. More than 50% of generations were usable on the first pass.</li>
-                  <li>The model sometimes changed people, objects and backgrounds in subtle ways, compromising the
-                    authenticity of the source image.</li>
-                  <li>It occasionally animated objects that should have remained inanimate.</li>
-                  <li>Tests also revealed a tendency to lighten or whitewash people depicted in the source material.
-                  </li>
-                </ul>
-                <br>
-                <p class="test-finding"><strong>Takeaway: </strong>Image-to-video generation can animate archival
-                  material efficiently, but even subtle model changes can alter the meaning and veracity of a historical
-                  image. The workflow requires explicit acceptance criteria covering subject identity, composition,
-                  period detail, object behaviour and skin tone. Failed shots need targeted prompt revisions, while
-                  final
-                  approval remains a human editorial responsibility.</p>
-              </div>
-            </section>
-
-            <section class="story-section" aria-labelledby="terra-responsible">
-              <h3 class="micro" id="terra-responsible">Responsible-AI intervention</h3>
-              <div class="story-copy">
-                <h3 class="story-lede">Context-aware colourisation: prompts adapt dynamically to the period, location
-                  and
-                  historical context of each image.</h3>
-                <ul class="finding-list">
-                  <li>This reduces the model's tendency to whitewash subjects or render skin tones and other culturally
-                    significant details inaccurately.</li>
-                  <li>However, the output is not automatically reliable and must still be verified by a human against
-                    the
-                    source and its historical context.</li>
-                </ul>
-              </div>
-            </section>
-          </article>
-        </div>
-      </details>
     </section>
 
     <section class="standards" aria-labelledby="standards-title">
@@ -4133,6 +3857,13 @@
             <h3>Count the intervention.</h3>
             <p>DeadTell, JJ and Terra measured generations per usable shot, first-pass usability and cost, and kept
               representation and accuracy checks with a human.</p>
+          </article>
+          <article class="standard">
+            <h3>Treat bias as a model failure.</h3>
+            <p>DeadTell's image model cast synthetic people from narrow racial defaults; Terra's colourisation
+              whitewashed people in historical artwork. Both were logged as model failures, mitigated in the
+              prompt&mdash;a demographic randomiser, era-aware skin-tone instructions&mdash;and kept under human
+              accuracy review.</p>
           </article>
         </div>
         <p class="standards-close">Define the dimension. Score the output. State the limit.</p>
